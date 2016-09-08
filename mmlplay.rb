@@ -49,7 +49,7 @@ class MML
 
     @@tempo = 120
     @oct = 5
-    @len = 0
+    @len = 120
     @gat = 0.98
     @curpos = 0
   end
@@ -166,7 +166,7 @@ class TRACK
     @curev = -1
   end
 
-  def func(t, ch)
+  def process(t, ch)
     if @curev == -1 || @curev[1] == 0  then
       @curev = @dat.getnext()
       if @curev == -1 then
@@ -199,15 +199,15 @@ t.write(0x50,0x07,0xf8)
 
 while 1
 
-  if tr0.func(t, 0) == -1 then
+  if tr0.process(t, 0) == -1 then
     break
   end
 
-  if tr1.func(t, 1) == -1 then
+  if tr1.process(t, 1) == -1 then
     break
   end
 
-  if tr2.func(t, 2) == -1 then
+  if tr2.process(t, 2) == -1 then
     break
   end
 
